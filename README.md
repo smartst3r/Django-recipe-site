@@ -4,7 +4,7 @@ This is a recipe web app that uses input ingredients to search for what recipes 
 #### This is the home page that displays recent recipes uploaded
 ![alt text](https://raw.githubusercontent.com/smartst3r/Django-recipe-site/master/readme_images/home.PNG)
 
-#### This is the recipe upload page it takes the ingredients inputed and checks to see if they are already in the system if not it adds them
+#### This is the recipe upload page it takes the ingredients inputed and checks to see if they are already in the system. If not it adds them
 ![alt text](https://raw.githubusercontent.com/smartst3r/Django-recipe-site/master/readme_images/create.PNG)
 
 #### This is what it looks like when you select a recipe(recipe page)
