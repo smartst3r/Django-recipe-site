@@ -1,0 +1,62 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+<link rel="stylesheet" type="text/css" href="{% static 'recipes/whygod.css' %}">
+<script type='text/javascript' src="{% static 'recipes/jquery-3.3.1.min.js' %}"></script>  
+<script type='text/javascript' src="{% static 'recipes/index.js' %}"></script>	
+<script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>  
+<script src="//code.jquery.com/jquery-1.12.4.js"></script>	
+</head>
+
+<body>
+	<div class='grid'>
+		<div id='top-box'>
+			<form method="post">
+					  {% csrf_token %}
+				{{ form }}
+				{{ formset.management_form }}
+				<table>
+					{% for form in formset %}
+					<tr><td><ul class="list-inline">{{ form.as_p }}</ul></td></tr>
+					{% endfor %}
+				</table>
+				<input type="hidden" value="false" name="additems" id="additems">
+    <button class="btn btn-primary" id="additemsbutton">Add Ingredients</button>
+				<input type="submit" value="Submit" class="btn btn-primary">    
+			</form>
+			
+<script>
+$(document).ready(function() {
+        $("#additemsbutton").on('click',function(event) {
+         $("#additems").val("true");
+       });
+});
+</script>
+			
+			
+			
+			
+			<!-- <form action="" method="post"> -->
+				<!-- {% csrf_token %} -->
+				<!-- <div class='table'> -->
+				<!-- <table class='no_error'> -->
+				<!-- {{ formset }} -->
+				<!-- </table> -->
+				<!-- </div> -->
+				<!-- <input type="button" value="Add More" id='add_more'> -->
+				<!-- <input type="submit" value="Submit"> -->
+				<!-- <script> -->
+					<!-- $("#add_more").click(function(){ -->
+						<!-- cloneMore('div.table:last','service'); -->
+						<!-- }); -->
+				<!-- </script> -->
+			<!-- </form> -->
+		</div>
+		
+	</div>
+
+</body>
+
+</html> 

@@ -1,0 +1,206 @@
+
+body,html {
+	padding: 0;
+	margin: 0;
+	background-image: url( '/static/recipes/images/whiteground.png');
+}
+/* h3{ */
+	/* font-size:1.3em; */
+	/* display:grid; */
+	/* grid-template-columns:1fr; */
+	/* justify-items: center; */
+	/* /* max-width:200px; */
+	/* margin:auto; */ */
+	/* padding-top:5px; */
+	/* padding-bottom:5px; */
+/* } */
+
+/* #button-box{ */
+	
+	/* padding-top:10px; */
+	
+/* } */
+.grid{
+	justify-items: center;
+	margin:auto;
+	display:grid;
+	grid-template-columns:1fr 1fr ;
+	grid-gap:10px;
+	margin:auto;
+}
+/* This css is for the navagation bar 
+Grid-template-columns is spliting the top into 3 parts like so 1/4   1/2   1/4 */
+.Nav-bar{
+	display:grid;
+	grid-template-columns:1fr 2fr 1fr ;
+	height:150px;
+	width:auto;
+	background-color:lightblue;
+	margin-bottom:30px;
+	border-width:0px 0px 2px 0px;
+	border-color:#ff8080;
+	border-style:solid;
+	border-radius:0px 0px 10px 10px;
+}	
+	.flex{
+		justify-items: center;
+		margin:auto;
+	}
+.forms{
+	margin:auto;
+	display:block;
+	background-color:lightblue;
+	max-width:700px;
+	/* height:400px; */
+	padding:15px;
+	border-color:black;
+	border-style:solid;
+	border-radius:10px;
+}
+	.test-form{
+		display:grid;
+		grid-template-columns:1fr 1fr;
+		grid-gap:1em;
+	}
+
+		.left-grid{
+			
+		}
+
+		.recipe-title{
+			padding-right:10px;
+			padding-bottom:10px;
+			padding-top:10px;
+			justify-items: center;
+			margin:auto;
+			display:grid;
+			grid-template-columns:1fr 1fr ;
+			grid-gap:10px;
+			margin:auto;
+			font-size:1.2em;
+		}
+			.recipe-title > input{
+				padding:5px;
+				border-radius:8px;
+				border-width:1.3px;
+				border-color:#ff8080;
+			}
+		.recipe-text{
+			margin:0px;
+		}
+		.ingredient-form_set > input{
+			
+
+		}
+			.parent-family-holder{
+				border-style:solid;
+				border-width:1px 0px 0px 0px;
+				border-color:gray ;
+			}
+			.parent-family-holder{
+				
+			}
+				.family-holder {
+					justify-items: center;
+					margin:auto;
+					display:grid;
+					grid-template-columns:1fr 1fr ;
+					grid-gap:10px;
+					margin:auto;
+					padding-top:15px;
+					padding-right:10px;
+					padding-bottom:15px;
+					font-size:1.2em;
+				}
+					.family-holder > input,select,input[type=number]{
+						padding:5px;
+						border-radius:8px;
+						border-width:1.3px;
+						border-color:#ff8080;
+					}
+	.right-grid > textarea{
+		border-radius:8px;
+		border-width:1.3px;
+		border-color:#ff8080;
+	}
+	.button {
+		background-color:lightblue;
+		border-radius:15px;
+		font-size:1em;
+		border-width:2px;
+		border-color:#ff8080;
+	}
+
+	.custom-file-upload{
+		background-color:lightblue;
+		border-radius:15px;
+		font-size:1em;
+		border-style:solid;
+		border-width:2px;
+		border-color:#ff8080;
+		padding:3px;
+	}
+		input[type="file"] {
+		display: none;
+	}
+	
+/* check page */
+/* check page */
+/* check page */
+
+.search-results{
+	background-color:lightblue;
+	border-radius:10px;
+	/* display:block; */
+	width:auto;
+	margin:auto;
+	margin-left:40px;
+	margin-right:40px;
+	padding:10px;
+	font-size:1.3em;
+	margin-top:80px;
+	margin-bottom:80px;
+	border-color:black;
+	border-style:solid;
+	border-radius:10px;
+	display:grid;
+	grid-template-columns: 1fr 1fr;
+	grid-template-rows: 1fr 1fr 1fr;
+	
+}	
+	#6-2layout{
+
+	}
+
+
+	.result :hover{
+		cursor: pointer;
+	}
+	.result{
+		padding-left:20px;
+		display:grid;
+		padding-bottom:5px;
+		padding-top:5px;
+		height:150px;
+		grid-template-columns:150px 70%;
+		/* grid-gap:.3em; */
+		border-width:0px 0px 1px 0px;
+		border-color:gray;
+		border-style:solid;
+		text-align:center;
+	}
+		.result > img{
+			max-height:150px;
+			max-width:150px;
+			border-radius:5px;
+		}
+		.result h3{
+		
+		}
+		.result p{
+			font-size:1em;
+			display:block;
+			padding-top:20px;
+			padding-left:20px;
+			
+		}

@@ -1,0 +1,50 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+<link rel="stylesheet" type="text/css" href="{% static 'recipes/whygod.css' %}">
+<script type='text/javascript' src="{% static 'recipes/jquery-3.3.1.min.js' %}"></script>  
+<script type='text/javascript' src="{% static 'recipes/index.js' %}"></script>	
+<script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>  
+<script src="//code.jquery.com/jquery-1.12.4.js"></script>	
+</head>
+
+<body>
+<p>select your ingredients</p>
+<form method="post">
+{% csrf_token %}
+				{{ form1.management_form }}
+				<table>
+					{% for form in form1 %}
+					<tr><td><ul class="list-inline">{{ form.as_p }}</ul></td></tr>
+					{% endfor %}
+				</table>
+				<input type="hidden" value="false" name="additems" id="additems">
+    <button class="btn btn-primary" id="additemsbutton">Add Ingredients</button>
+	<input type="submit" value="Submit" class="btn btn-primary">
+</form>
+<div id='recipe_box'>
+<select>
+{% for key in recipe_list %}
+	<option value={{ key }}>{{ recipe_list.key }}</option>
+{% endfor %}
+
+
+	
+</select>
+
+</div>
+<script>
+$(document).ready(function() {
+        $("#additemsbutton").on('click',function(event) {
+         $("#additems").val("true");
+       });
+});
+</script>
+
+
+
+</body>
+
+</html> 

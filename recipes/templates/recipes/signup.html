@@ -1,0 +1,22 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+<link rel="stylesheet" type="text/css" href="{% static 'recipes/whygod.css' %}">
+<script type='text/javascript' src="{% static 'recipes/jquery-3.3.1.min.js' %}"></script>  
+<script type='text/javascript' src="{% static 'recipes/index_copy.js' %}"></script>	
+<script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>  
+<script src="//code.jquery.com/jquery-1.12.4.js"></script>	
+</head>
+
+<body>
+<form method="post" class='test-form'>
+{% csrf_token %}
+{{ form }}
+<button type='submit'>hello</button>
+</form>
+
+</body>
+
+</html> 

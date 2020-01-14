@@ -1,0 +1,161 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+<link rel="shortcut icon" type="image/png" href="{% static 'recipes/favicon.ico' %}"/>
+<link rel="stylesheet" type="text/css" href="{% static 'recipes/global.css' %}">
+<script type='text/javascript' src="{% static 'recipes/jquery-3.3.1.min.js' %}"></script>  
+<script type='text/javascript' src="{% static 'recipes/index_copy.js' %}"></script>	
+<script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>  
+<script src="//code.jquery.com/jquery-1.12.4.js"></script>	
+</head>
+
+
+
+
+<body>
+	<div class='Nav-bar' >
+		<a class='flex' href='http://127.0.0.1:8000/recipes/create/'><img  height='75px' src="{% static 'recipes/images/cut1.png' %}"></a>
+		<a class='flex' href='http://127.0.0.1:8000/recipes/home/'><img height='150px' src="{% static 'recipes/images/home.png' %}"></a>
+		<a class='flex' href='http://127.0.0.1:8000/recipes/search/'><img height='75px' src="{% static 'recipes/images/cut2.png' %}"></a>
+	</div> 
+
+
+
+
+	<div class='forms' style='display:none;'>
+		<form method="post" class='test-form1' >
+			{% csrf_token %}
+			<h3 id='title' style='display:none;'>Search For Recipe</h3>
+			<div id='recipe-title' class='grid'>
+			{{form.as_table}}
+			</div>
+			{{ formset.management_form }}
+			<div id="ingredient-form_set" >
+				{% for form in formset.forms %}
+					<div class='family-holder-dumb'>
+						<div class='family-holder' class='grid'>
+							{{ form.as_table }}
+						</div>
+					</div>
+				{% endfor %}
+
+			</div>
+			
+			<div id="empty_form" style="display:none;" >
+				<div class='family-holder-dumb'>
+					<div class='family-holder' class='grid'>
+						{{ formset.empty_form.as_table }}
+					</div>
+				</div>
+			</div>
+			<div id='	'>
+				<input class='button' type="button" value="Add More Ingredients" id="add_more">
+				<button class='button' style='float:right;' type='submit'>Submit recipe</button>
+			</div>
+		<form>
+	</div>
+	<div class='search-results' style='display:none;'>
+		<h3> Search Results </h3>
+		<div></div>
+	</div>
+	<div id='recipe-page' class='back-button' style='display:none;'>
+		
+	</div>
+
+
+
+
+	<script>
+		$('#add_more').click(function() {
+			var form_idx = $('#id_form-TOTAL_FORMS').val();
+			$('#ingredient-form_set').append($('#empty_form').html().replace(/__prefix__/g, form_idx));
+			$('#id_form-TOTAL_FORMS').val(parseInt(form_idx) + 1);
+		});
+	</script>
+
+
+	<script>
+	$(document).ready(function(){
+		$("input[name='form-0-DELETE']").hide()
+		$("input[name='form-0-DELETE']").prev().hide()
+		<!-- elements to be hide -->
+		
+		
+
+		<!-- end -->
+
+		
+		$(".forms").fadeIn(1000)
+		<!-- $('#title').effect("bounce", { times:3 }, 350) -->
+		
+		
+		$(".errorlist").hide()
+
+		$(document).on('click',"input[name$='DELETE']",function(){
+		 var sibselect = $(this).siblings().prev()
+			if ($(sibselect).is(":hidden")){
+				sibselect.show()
+			}else{
+				sibselect.hide()
+			}
+			
+			
+			console.log('HERE',$(sibselect).is(":hidden"));
+		})
+			
+		
+			var testform = $(".test-form1");
+			
+			testform.submit(function(event){
+				
+				event.preventDefault();
+				<!-- console.log('testsads'); -->
+				var thisForm = $(this);
+				var actionEndpoint=thisForm.attr('action');
+				var httpMethod=thisForm.attr('method');
+				var formData=thisForm.serialize();
+				console.log(httpMethod,'wowoows',formData);
+				
+
+				
+				<!-- console.log(formData); -->
+				
+				$.ajax({
+					url: actionEndpoint,
+					method: httpMethod,
+					data: formData,
+					success: function(data){
+						$(".search-results").fadeIn(300);
+						$('.result').remove();
+						count=0
+						for(i in data){
+							count+=1
+							recipe_id=i
+							recipe_name=data[i][0]
+							recipe_picture=data[i][1]
+							recipe_instructions=data[i][2]
+							recipe_ingredients=data[i][3]
+			
+							$('.search-results').append("<a style='color:black;text-decoration:none;' href='http://127.0.0.1:8000/recipes/"+recipe_id+"/'<div  class='result'><img class='back' src='../../../media/"+recipe_picture+"'><h3 class='back'> "+recipe_name+" </h3><div></div><div style='display:none;' id="+recipe_id+" class='instructions'><h3> Recipe Instructions </h3><p  name='instructions' >"+recipe_instructions+"</p></div><div style='display:none;' class='ingredients'></div></div>");
+							$('#'+recipe_id+'').append("<h3> Ingredients need </h3>")
+							for(ingredient of recipe_ingredients){
+								$('#'+recipe_id+'').append("<p  name='ingredient_amount' >"+ingredient[1]+' '+ingredient[2]+' of '+ingredient[0]+"</p>")
+
+							}
+						}
+						
+					},
+					error: function(errorData){
+						console.log('error ',errorData)
+					}
+				})
+				
+			})
+		})
+	</script>
+				
+</body>
+
+</html> 

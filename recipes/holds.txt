@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+<link rel="stylesheet" type="text/css" href="{% static 'recipes/whygod.css' %}">
+<script type='text/javascript' src="{% static 'recipes/jquery-3.3.1.min.js' %}"></script>  
+<script type='text/javascript' src="{% static 'recipes/index.js' %}"></script>  
+<script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>  
+<script src="//code.jquery.com/jquery-1.12.4.js"></script>  
+</head>
+
+<body>
+	<div class='grid'>
+		<div id='top-box'>
+			Add another ingredient
+		</div>
+		<div id='recipe_entry_box'>
+			<h1>Enter Recipe</h1>
+
+			{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+				<form action="{% url 'recipes:addrecipe'  %}" method="post">
+				{% csrf_token %}
+				<input type="text" name="recipe_title" id="recipe_title" value="">
+				<input type="text" name="ingredient" id="ingredient" value="">
+				<input type="text" name="ing_amount" id="ing_amount" value="">
+				<input type="text" name="ing_unit" id="ing_unit" value="">
+		
+				<input type="submit" value="addrecipe">
+			</form>					
+		</div>
+	</div>
+
+</body>
+
+</html>

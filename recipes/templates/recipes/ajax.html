@@ -1,0 +1,126 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+<link rel="shortcut icon" type="image/png" href="{% static 'recipes/favicon.ico' %}"/>
+<link rel="stylesheet" type="text/css" href="{% static 'recipes/whygod.css' %}">
+<script type='text/javascript' src="{% static 'recipes/jquery-3.3.1.min.js' %}"></script>  
+<script type='text/javascript' src="{% static 'recipes/index_copy.js' %}"></script>	
+<script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>  
+<script src="//code.jquery.com/jquery-1.12.4.js"></script>	
+</head>
+
+<body>
+
+<div class='Nav-bar' >
+	<a class='flex' href='http://127.0.0.1:8000/recipes/create/'><img  height='75px' src="{% static 'recipes/images/cut1.png' %}"></a>
+	<a class='flex' href='http://127.0.0.1:8000/recipes/home/'><img height='150px' src="{% static 'recipes/images/home.png' %}"></a>
+	<a class='flex' href='http://127.0.0.1:8000/recipes/search/'><img height='75px' src="{% static 'recipes/images/cut2.png' %}"></a>
+</div> 
+
+
+
+<div class='forms'style='display:none;'>
+	<form method="POST" class='test-form' enctype="multipart/form-data">
+		{% csrf_token %}
+		<div class="left-grid">
+			<h3>Create Recipe</h3>
+			<div class='recipe-title'>
+			<p class='recipe-text'>Recipe title:</p>
+			{{form.recipe_title}}
+			<!-- {{form.recipe_title}} -->
+			</div>
+			{{ formset.management_form }}
+			<div class="ingredient-form_set" >
+				{% for form in formset.forms %}
+					<div>
+						<div class='family-holder'>
+							{{ form.as_table }}
+						</div>
+					</div>
+				{% endfor %}
+
+			</div>
+			
+			<div id="empty_form" style="display:none" >
+				<div class='parent-family-holder'>
+					<div class='family-holder'>
+						{{ formset.empty_form.as_table }}
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class='right-grid' style='display:grid;grid-template-rows:80px 3fr;'>
+			<h3> Instructions </h3>
+			{{form.recipe_instructions}}
+		</div>
+		
+		<div style='margin-top:auto;'>
+			<input class='button' type="button" value="Add More Ingredients" id="add_more">
+			<button class='button' style='float:right;' type='submit'>Submit recipe</button>
+		</div>
+		<div>
+			<label class="custom-file-upload">
+				{{ form.picture }}
+				<i class="fa fa-cloud-upload"></i> Upload Photo
+			</label>
+		</div>
+		<input id='message' type='hidden' value='{{ message }}'>
+	<form>
+</div>
+
+
+
+
+<script>
+    $('#add_more').click(function() {
+        var form_idx = $('#id_form-TOTAL_FORMS').val();
+        $('.ingredient-form_set').append($('#empty_form').html().replace(/__prefix__/g, form_idx));
+		
+        $('#id_form-TOTAL_FORMS').val(parseInt(form_idx) + 1);
+    });
+</script>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+$(document).ready(function(){
+	var message = document.getElementById('message').value
+	if( message !='nothing' ){
+		console.log(alert(message))
+	}
+	$("input[name='form-0-DELETE']").hide()
+	$("input[name='form-0-DELETE']").prev().hide()
+	$(".forms").fadeIn(1000)
+	$(".errorlist").hide()
+	
+	
+	$(document).click()
+	
+	
+	$(document).on('click',"input[name$='DELETE']",function(){
+	 var sibselect = $(this).siblings().prev()
+		if ($(sibselect).is(":hidden")){
+			sibselect.show()
+		}else{
+			sibselect.hide()
+		}
+		
+		
+		console.log('HERE',$(sibselect).is(":hidden"));
+	})		 
+	})
+</script>
+
+</body>
+
+</html> 

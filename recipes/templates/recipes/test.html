@@ -1,0 +1,48 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+<link rel="shortcut icon" type="image/png" href="{% static 'recipes/favicon.ico' %}"/>
+<link rel="stylesheet" type="text/css" href="{% static 'recipes/whygod.css' %}">
+<script type='text/javascript' src="{% static 'recipes/jquery-3.3.1.min.js' %}"></script>  
+<script type='text/javascript' src="{% static 'recipes/index_copy.js' %}"></script>	
+<script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>  
+<script src="//code.jquery.com/jquery-1.12.4.js"></script>	
+</head>
+
+<body>
+
+	<div class='Nav-bar' >
+		<a class='flex' href='http://127.0.0.1:8000/recipes/create/'><img  height='75px' src="{% static 'recipes/images/cut1.png' %}"></a>
+		<a class='flex' href='http://127.0.0.1:8000/recipes/home/'><img height='150px' src="{% static 'recipes/images/home.png' %}"></a>
+		<a class='flex' href='http://127.0.0.1:8000/recipes/search/'><img height='75px' src="{% static 'recipes/images/cut2.png' %}"></a>
+	</div> 
+	<!-- <div class='search-results' style='display:none;'> -->
+	<!-- </div> -->
+	<div id='6-2layout' class='search-results' style='display:none'>
+	<h3> Recently submitted recipes </h3>
+		<div></div>
+		
+		{% for key,value in data.items %}
+			
+			<a href='http://127.0.0.1:8000/recipes/{{key}}/' style='color:black;text-decoration:none;'><div class='result'>
+				<img class='back' src='../../../media/{{ value.1 }}'>
+				<h3 class='back'> {{ value.0 }} </h3>
+			</div>
+		{% endfor %}
+		
+	</div>
+	<div id='recipe-page' class='back-button' style='display:none;'>
+		<p><-- Back</p> 
+	</div>
+<script>
+	$(document).ready(function(){
+		$('.search-results').fadeIn(1000)
+	
+	})
+</script>
+
+</body>
+
+</html> 
