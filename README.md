@@ -15,7 +15,7 @@ This is a recipe web app that uses input ingredients to search for what recipes 
  
  
 ### Background info
-The reason I had this is because I would have a bunch of leftover ingredients and would wonder what I could make.
+The reason I made this is because I would have a bunch of leftover ingredients and would wonder what I could make.
 I have plans to move this to another site and do some web crawling to get loads of recipes.
  
 #### I stopped work on this project as I am porting it to a website.
