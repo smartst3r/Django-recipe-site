@@ -10,7 +10,7 @@ This is a recipe web app that uses input ingredients to search for what recipes 
 #### This is what it looks like when you select a recipe(recipe page)
 ![alt text](https://raw.githubusercontent.com/smartst3r/Django-recipe-site/master/readme_images/recipepage.PNG)
 
-#### This is the search page you search for recipes based on the ingredients.
+#### This is the search page, you search for recipes based on the inputed ingredients.
 ![alt text](https://raw.githubusercontent.com/smartst3r/Django-recipe-site/master/readme_images/recipesearch.PNG)
  
  
